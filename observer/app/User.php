@@ -2,7 +2,9 @@
 
 namespace App;
 
-class User 
+use App\observer\UserObserver;
+
+class User implements UserObserver
 {
     // Hors exercice mais notable:
     // Promotion du constructeur: https://www.php.net/manual/fr/language.oop5.decon.php#language.oop5.decon.constructor.promotion
@@ -11,6 +13,10 @@ class User
         private bool $notified = false
     ) {}
 
+    public function update(\SplSubject $subject) {
+        echo "Nouvelle date";
+        $this->notified = true;
+    }
 
     public function isNotified(): bool
     {
